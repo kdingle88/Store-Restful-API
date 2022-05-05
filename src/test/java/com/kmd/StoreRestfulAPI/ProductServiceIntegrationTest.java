@@ -22,14 +22,22 @@ public class ProductServiceIntegrationTest {
     public void before() {
         productRepository.save(new Product(1L,"Ice Cream"));
         productRepository.save(new Product(2L,"Brownie"));
+        productRepository.save(new Product(3L,"Cake"));
     }
 
     @Test
     public void testGetAllProducts() {
         List<Product> products = productService.getAllProducts();
 
-        assertEquals(2,products.size());
+        assertEquals(3,products.size());
 
+    }
+
+    @Test
+    public void testGetAllProductsByType() {
+        List<Product> cakeProducts = productService.getProductsByType("Cake");
+
+        assertEquals(1,cakeProducts.size());
     }
 
 
