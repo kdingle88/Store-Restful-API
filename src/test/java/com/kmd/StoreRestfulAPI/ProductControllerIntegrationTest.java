@@ -31,6 +31,11 @@ public class ProductControllerIntegrationTest {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/products",
                 String.class)).isEqualTo("[{\"id\":1,\"name\":\"Ice Cream\"},{\"id\":2,\"name\":\"Brownie\"}]");
     }
+    @Test
+    public void shouldReturnProductsByType() throws Exception{
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/products?type=Brownie",
+                String.class)).isEqualTo("[{\"id\":2,\"type\":\"Brownie\"}]");
+    }
 }
 
 
