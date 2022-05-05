@@ -2,6 +2,7 @@ package com.kmd.StoreRestfulAPI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +19,13 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public @ResponseBody List<Product> getProducts() {
-        return productService.getAllProducts();
+    public @ResponseBody List<Product> getProducts(@RequestParam(required = false) String type) {
+        if(type == null) {
+            return productService.getAllProducts();
+        }
+
+        return productService.getProductsByType(type);
+
     }
 
 }

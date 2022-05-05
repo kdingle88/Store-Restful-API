@@ -34,4 +34,13 @@ public class ProductControllerTest {
         this.mockMvc.perform(get("/products")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("[{\"id\":1,\"type\":\"Cake\"}]")));
     }
+
+    @Test
+    public void testGetProductsByType() throws Exception {
+        List<Product> products = List.of(new Product(1L,"Brownie"), new Product(2L,"Brownie"));
+        when(productService.getProductsByType("Brownie")).thenReturn(products);
+
+        this.mockMvc.perform(get("/products?type=Brownie")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("[{\"id\":1,\"type\":\"Brownie\"},{\"id\":2,\"type\":\"Brownie\"}]")));
+    }
 }
