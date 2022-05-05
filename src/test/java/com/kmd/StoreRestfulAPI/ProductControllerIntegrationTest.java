@@ -1,5 +1,6 @@
 package com.kmd.StoreRestfulAPI;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,19 @@ public class ProductControllerIntegrationTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    @Autowired
+    ProductRepository productRepository;
+
+    @BeforeEach
+    public void before() {
+        productRepository.save(new Product(1L,"Ice Cream"));
+        productRepository.save(new Product(2L,"Brownie"));
+    }
+
     @Test
-    @Disabled
     public void shouldReturnAllProducts() throws Exception{
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/products",
-                String.class)).isEqualTo("[{\"id\":1,\"name\":\"Cake\"}, {\"id\":2,\"name\":\"Brownie\"}]");
+                String.class)).isEqualTo("[{\"id\":1,\"name\":\"Ice Cream\"},{\"id\":2,\"name\":\"Brownie\"}]");
     }
 }
 
