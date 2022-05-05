@@ -29,7 +29,7 @@ public class ProductControllerIntegrationTest {
     @Test
     public void shouldReturnAllProducts() throws Exception{
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/products",
-                String.class)).isEqualTo("[{\"id\":1,\"name\":\"Ice Cream\"},{\"id\":2,\"name\":\"Brownie\"}]");
+                String.class)).isEqualTo("[{\"id\":1,\"type\":\"Ice Cream\"},{\"id\":2,\"type\":\"Brownie\"}]");
     }
     @Test
     public void shouldReturnProductsByType() throws Exception{
