@@ -32,6 +32,6 @@ public class ProductControllerTest {
         when(productService.getAllProducts()).thenReturn(products);
 
         this.mockMvc.perform(get("/products")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("[{\"id\":1,\"name\":\"Cake\"}]")));
+                .andExpect(content().string(containsString("[{\"id\":1,\"type\":\"Cake\"}]")));
     }
 }

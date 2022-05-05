@@ -9,15 +9,15 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
     @Id
     private Long id;
-    private String name;
+    private String type;
 
-    public Product(Long id, String name) {
+    public Product(Long id, String type) {
         this.id = id;
-        this.name = name;
+        this.type = type;
     }
 
-    public Product(String name) {
-        this.name = name;
+    public Product(String type) {
+        this.type = type;
     }
 
     public Product() {
@@ -32,11 +32,11 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(String name) {
+        this.type = name;
     }
 }

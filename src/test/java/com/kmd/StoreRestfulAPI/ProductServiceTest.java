@@ -20,7 +20,7 @@ public class ProductServiceTest {
 
     @Test
     public void testFindAll() throws Exception {
-        List<Product> products = List.of(new Product(1L, "Cake"), new Product(2L,"Brownie"), new Product(3L,"Ice Cream"));
+        List<Product> products = List.of(new Product("Cake"), new Product("Brownie"), new Product("Ice Cream"));
 
         when(productRepository.findAll()).thenReturn(products);
 

@@ -39,7 +39,7 @@ public class ProductRepositoryTest {
 
     @Test
     public void findProductsByName() {
-        List<Product> brownies = productRepository.findProductsByName("Brownie");
+        List<Product> brownies = productRepository.findProductsByType("Brownie");
 
         assertEquals(1,brownies.size());
     }
