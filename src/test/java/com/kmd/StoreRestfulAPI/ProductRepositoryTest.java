@@ -18,30 +18,21 @@ public class ProductRepositoryTest {
 
     @BeforeEach
     public void before() {
-        productRepository.save(new Product("Ice Cream"));
-        productRepository.save(new Product("Brownie"));
-    }
+        List<Product> products = List.of(new Product("Cake"), new Product("Brownie"), new Product("Brownie"), new Product("Ice Cream"));
 
-
-    @Test
-    public void saveProducts() {
-        List<Product> products = List.of(new Product("Cake"), new Product("Brownie"));
-
-        List<Product> savedProducts = products.stream().map(product -> productRepository.save(product)).collect(Collectors.toList());
-
-        assertEquals(2, savedProducts.size());
+        products.stream().forEach(product -> productRepository.save(product));
     }
 
     @Test
     public void findAllProducts() {
-        assertEquals(2,productRepository.findAll().size());
+        assertEquals(4,productRepository.findAll().size());
     }
 
     @Test
     public void findProductsByName() {
         List<Product> brownies = productRepository.findProductsByType("Brownie");
 
-        assertEquals(1,brownies.size());
+        assertEquals(2,brownies.size());
     }
 
 }
