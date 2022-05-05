@@ -27,4 +27,13 @@ public class ProductServiceTest {
         assertEquals(3,productService.getAllProducts().size());
 
     }
+
+    @Test
+    public void testGetAllProductsByType() {
+        List<Product> products = List.of(new Product("Cake"), new Product("Cake"),new Product("Cake"),new Product("Cake"));
+
+        when(productRepository.findProductsByType("Cake")).thenReturn(products);
+
+        assertEquals(4,productService.getProductsByType("Cake").size());
+    }
 }
