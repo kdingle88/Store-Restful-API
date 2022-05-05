@@ -1,10 +1,8 @@
 package com.kmd.StoreRestfulAPI;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
@@ -22,7 +20,7 @@ public class ProductServiceIntegrationTest {
 
     @BeforeEach
     public void before() {
-    productRepository.save(new Product(1L,"Ice Cream"));
+        productRepository.save(new Product(1L,"Ice Cream"));
         productRepository.save(new Product(2L,"Brownie"));
     }
 
