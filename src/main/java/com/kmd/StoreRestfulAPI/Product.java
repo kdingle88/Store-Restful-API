@@ -1,8 +1,12 @@
 package com.kmd.StoreRestfulAPI;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Product {
 
+    @Id
     private Long id;
     private String name;
 
@@ -12,6 +16,7 @@ public class Product {
     }
 
     public Product() {
+
     }
 
     public Long getId() {
