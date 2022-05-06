@@ -23,4 +23,9 @@ public class ProductService {
     public List<Product> getProductsByType(String type) {
         return productRepository.findProductsByType(type);
     }
+
+    public Product addProduct(Product product) {
+        productRepository.save(product);
+        return product;
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductControllerIntegrationTest {
@@ -35,6 +36,18 @@ public class ProductControllerIntegrationTest {
     public void shouldReturnProductsByType() throws Exception{
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/products?type=Brownie",
                 String.class)).isEqualTo("[{\"id\":2,\"type\":\"Brownie\"}]");
+
+    }
+
+    @Test
+    public void shouldAddProduct() throws Exception {
+
+        Product product = new Product(3L,"Pie");
+
+        assertThat(this.restTemplate.postForObject("http://localhost:" + port + "/products?type=Brownie",
+                product,String.class)).isEqualTo("{\"id\":3,\"type\":\"Pie\"}");
+
+        assertEquals(3,productRepository.findAll().size());
     }
 }
 
