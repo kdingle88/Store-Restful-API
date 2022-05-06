@@ -36,4 +36,13 @@ public class ProductServiceTest {
 
         assertEquals(4,productService.getProductsByType("Cake").size());
     }
+
+    @Test
+    public void testAddProduct() {
+        Product product = new Product(1L,"Cake");
+
+        when(productRepository.save(product)).thenReturn(product);
+
+        assertEquals(1L, productService.addProduct(product).getId());
+    }
 }
