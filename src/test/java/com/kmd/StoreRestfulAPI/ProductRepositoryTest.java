@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class ProductRepositoryTest {
 
     @Autowired
@@ -35,4 +37,10 @@ public class ProductRepositoryTest {
         assertEquals(2,brownies.size());
     }
 
+    @Test
+    public void saveProduct() {
+        Product savedProduct = productRepository.save(new Product(1L, "Candy"));
+
+        assertEquals(1L,savedProduct.getId());
+    }
 }
